@@ -1,0 +1,25 @@
+shared:
+  build: docker/shared
+  volumes:
+    - ./code:/var/www/html
+
+nginx:
+  build: docker/nginx
+  ports:
+    - 8080:80
+  links:
+    - php
+  volumes_from:
+    - shared
+
+redis:
+  build: docker/redis
+
+php:
+  build: docker/php
+  links:
+    - redis
+  volumes_from:
+    - shared
+  environment:
+
