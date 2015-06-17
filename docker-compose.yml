@@ -25,3 +25,5 @@ php:
 
 postgres:
   build: docker/postgres
+  ports:
+    - 5432:5432
