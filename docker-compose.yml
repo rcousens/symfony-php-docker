@@ -19,7 +19,9 @@ php:
   build: docker/php
   links:
     - redis
+    - postgres
   volumes_from:
     - shared
-  environment:
 
+postgres:
+  build: docker/postgres
