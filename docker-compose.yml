@@ -20,6 +20,7 @@ php:
   links:
     - redis
     - postgres
+    - elasticsearch
   volumes_from:
     - shared
 
@@ -27,3 +28,9 @@ postgres:
   build: docker/postgres
   ports:
     - 5432:5432
+
+elasticsearch:
+  build: docker/elasticsearch
+  ports:
+    - 9200:9200
+    - 9300:9300

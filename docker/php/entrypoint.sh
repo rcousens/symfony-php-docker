@@ -2,7 +2,10 @@
 
 echo "env[SYMFONY__DATABASE_HOST]=$POSTGRES_PORT_5432_TCP_ADDR" >> /etc/php5//fpm/pool.d/www.conf
 cd /var/www/html
-SYMFONY__DATABASE_HOST=$POSTGRES_PORT_5432_TCP_ADDR /usr/local/bin/composer install
+export SYMFONY__DATABASE_HOST=$POSTGRES_PORT_5432_TCP_ADDR 
+export SYMFONY__REDIS_HOST=$REDIS_PORT_6379_TCP_ADDR
+export SYMFONY__ELASTICSEARCH_HOST=$ELASTICSEARCH_PORT_9200_TCP_ADDR
+/usr/local/bin/composer install
 rm -fr /var/www/html/app/cache/*
 rm -fr /var/www/html/app/logs/*
 /bin/chmod 777 /var/www/html/app/cache

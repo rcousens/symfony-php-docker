@@ -17,7 +17,11 @@
         "symfony/monolog-bundle": "~2.4",
         "sensio/distribution-bundle": "~4.0",
         "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
-        "incenteev/composer-parameter-handler": "~2.0"
+        "incenteev/composer-parameter-handler": "~2.0",
+        "snc/redis-bundle": "1.1.x-dev",
+        "predis/predis": "0.8.x-dev",
+        "friendsofsymfony/elastica-bundle": "^3.1",
+        "friendsofsymfony/user-bundle": "~2.0@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
@@ -55,7 +59,9 @@
         "incenteev-parameters": {
             "file": "app/config/parameters.yml",
             "env-map": {
-                "database_host": "SYMFONY__DATABASE_HOST"
+                "database_host": "SYMFONY__DATABASE_HOST",
+                "redis_host": "SYMFONY__REDIS_HOST",
+                "elasticsearch_host": "SYMFONY__ELASTICSEARCH_HOST"
             }
         },
         "branch-alias": {
