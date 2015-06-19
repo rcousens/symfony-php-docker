@@ -1,7 +1,7 @@
 shared:
   build: docker/shared
   volumes:
-    - ./code:/var/www/html
+    - ./code/backend:/var/www/html
 
 nginx:
   build: docker/nginx
