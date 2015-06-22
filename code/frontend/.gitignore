@@ -1,3 +1,5 @@
-jspm_packages
-build.js*
+/jspm_packages/
+build.js
+build.js.map
+
 

@@ -4,7 +4,9 @@ System.config({
   "babelOptions": {
     "optional": [
       "runtime"
-    ]
+    ],
+    "blacklist": [],
+    "jsxPragma": "m"
   },
   "paths": {
     "*": "*.js",
