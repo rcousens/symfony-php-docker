@@ -14,7 +14,7 @@ homeComponent.view = function() {
         <div class="container">
 
             <div class="starter-template">
-                <h1>Bootstrap starter template</h1>
+                <h1>What do?</h1>
                 <div>
                     {todo}
                 </div>
