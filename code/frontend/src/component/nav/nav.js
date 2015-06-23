@@ -1,6 +1,5 @@
 import m from 'mithril.js';
 import { home } from '../home/home';
-import { todo } from '../todo/todo';
 
 var navComponent = {};
 
