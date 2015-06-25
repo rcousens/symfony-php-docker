@@ -17,7 +17,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/app/users", name="homepage")
+     * @Route("/app/users", name="users")
      */
     public function userAction()
     {
@@ -27,4 +27,29 @@ class DefaultController extends Controller
         $em->flush();
         return $this->render('default/index.html.twig');
     }
+
+    /**
+     * @Route("/app/assets", name="assets")
+     */
+    public function assetsAction()
+    {
+        $job = new Job('assets:install');
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($job);
+        $em->flush();
+        return $this->render('default/index.html.twig');
+    }
+
+    /**
+     * @Route("/app/assetic/{env}", name="assetic")
+     */
+    public function asseticAction($env)
+    {
+        $job = new Job('assetic:dump', ["--env=$env"]);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($job);
+        $em->flush();
+        return $this->render('default/index.html.twig');
+    }
+
 }
