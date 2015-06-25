@@ -5,6 +5,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y \
     curl \
     git \
+    rsyslog \
     php5-cli \
     php5-fpm \
     php5-json \
