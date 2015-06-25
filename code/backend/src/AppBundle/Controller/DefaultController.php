@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use JMS\JobQueueBundle\Entity\Job;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
@@ -17,7 +18,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/app/users", name="users")
+     * @Route("/app/users/index", name="app_users_index")
      */
     public function userAction()
     {
@@ -29,7 +30,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/app/assets", name="assets")
+     * @Route("/app/assets", name="app_assets")
      */
     public function assetsAction()
     {
@@ -41,7 +42,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/app/assetic/{env}", name="assetic")
+     * @Route("/app/assetic/{env}", name="app_assetic")
      */
     public function asseticAction($env)
     {
@@ -50,6 +51,41 @@ class DefaultController extends Controller
         $em->persist($job);
         $em->flush();
         return $this->render('default/index.html.twig');
+    }
+
+    /**
+     * @Route("/app/users/create", name="app_users_create")
+     */
+    public function createUsersAction()
+    {
+        $job = new Job('command:user:create:default');
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($job);
+        $em->flush();
+        return $this->render('default/index.html.twig');
+    }
+
+    /**
+     * @Route("/app/users/list", name="app_users_list")
+     */
+    public function listUsersAction()
+    {
+        $finder = $this->container->get('fos_elastica.finder.app.user');
+
+        $query = new \Elastica\Query();
+        $matchAll = new \Elastica\Query\MatchAll();
+
+        $query->setQuery($matchAll);
+
+        $results = $finder->findHybrid($query);
+
+        $elasticaResults = [];
+
+        foreach ($results as $result) {
+            $elasticaResults[] = [$result->getResult()->getId() => $result->getResult()->getSource()];
+        }
+
+        return new Response(json_encode($elasticaResults));
     }
 
 }
