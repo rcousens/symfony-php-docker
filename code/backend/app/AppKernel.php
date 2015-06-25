@@ -19,6 +19,9 @@ class AppKernel extends Kernel
             new Snc\RedisBundle\SncRedisBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\ElasticaBundle\FOSElasticaBundle(),
+            new JMS\JobQueueBundle\JMSJobQueueBundle(),
+            new JMS\DiExtraBundle\JMSDiExtraBundle($this),
+            new JMS\AopBundle\JMSAopBundle(),
             new AppBundle\AppBundle(),
             new UserBundle\UserBundle(),
         );

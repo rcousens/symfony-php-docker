@@ -21,7 +21,9 @@
         "snc/redis-bundle": "1.1.x-dev",
         "predis/predis": "0.8.x-dev",
         "friendsofsymfony/elastica-bundle": "^3.1",
-        "friendsofsymfony/user-bundle": "~2.0@dev"
+        "friendsofsymfony/user-bundle": "~2.0@dev",
+        "jms/job-queue-bundle": "1.*",
+        "pagerfanta/pagerfanta": "^1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

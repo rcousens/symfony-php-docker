@@ -24,6 +24,15 @@ php:
   volumes_from:
     - shared
 
+worker:
+  build: docker/worker
+  links:
+    - redis
+    - postgres
+    - elasticsearch
+  volumes_from:
+    - shared
+
 postgres:
   build: docker/postgres
   ports:

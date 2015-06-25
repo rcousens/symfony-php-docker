@@ -4,3 +4,8 @@ app:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+JMSJobQueueBundle:
+    resource: "@JMSJobQueueBundle/Controller/"
+    type: annotation
+    prefix: /jobs
