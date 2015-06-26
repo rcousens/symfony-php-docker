@@ -23,6 +23,12 @@ RUN sed -i "s@^display_startup_errors = Off@display_startup_errors = On@" /etc/p
 RUN sed -i "s@^;date.timezone =@date.timezone = UTC@" /etc/php5/fpm/php.ini
 RUN sed -i "s@^;error_log = syslog@error_log = syslog@" /etc/php5/fpm/php.ini
 
+RUN echo "xdebug.idekey = PHPSTORM" >> /etc/php5/fpm/conf.d/20-xdebug.ini
+RUN echo "xdebug.max_nesting_level = 1000" >> /etc/php5/fpm/conf.d/20-xdebug.ini
+RUN echo "xdebug.remote_enable = 1" >> /etc/php5/fpm/conf.d/20-xdebug.ini
+RUN echo "xdebug.remote_connect_back = 1" >> /etc/php5/fpm/conf.d/20-xdebug.ini
+
+
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
 
