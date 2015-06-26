@@ -3,17 +3,25 @@ shared:
   volumes:
     - ./code/backend:/var/www/html
 
+logstash:
+  build: docker/logstash
+  links:
+    - elasticsearch
+
 nginx:
   build: docker/nginx
   ports:
     - 8080:80
   links:
     - php
+    - logstash
   volumes_from:
     - shared
 
 redis:
   build: docker/redis
+  links:
+    - logstash
 
 php:
   build: docker/php
@@ -21,6 +29,7 @@ php:
     - redis
     - postgres
     - elasticsearch
+    - logstash
   volumes_from:
     - shared
 
@@ -43,3 +52,10 @@ elasticsearch:
   ports:
     - 9200:9200
     - 9300:9300
+
+kibana:
+  build: docker/kibana
+  ports:
+    - 5601:5601
+  links:
+    - elasticsearch

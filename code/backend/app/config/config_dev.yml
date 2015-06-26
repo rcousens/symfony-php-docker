@@ -32,6 +32,11 @@ monolog:
                 VERBOSITY_VERY_VERBOSE: NOTICE
                 VERBOSITY_DEBUG: DEBUG
             channels: ["doctrine"]
+        syslog:
+            type: syslog
+            level: error
+            facility: local0
+            ident: symfonydev
         # uncomment to get logging in your browser
         # you may have to allow bigger header sizes in your Web server configuration
         #firephp:

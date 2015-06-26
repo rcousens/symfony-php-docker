@@ -25,3 +25,8 @@ monolog:
             level: debug
         console:
             type:  console
+        syslog:
+            type: syslog
+            facility: local0
+            ident: symfonyprod
+            level: error

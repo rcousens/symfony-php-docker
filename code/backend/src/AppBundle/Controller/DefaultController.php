@@ -88,4 +88,12 @@ class DefaultController extends Controller
         return new Response(json_encode($elasticaResults));
     }
 
+    /**
+     * @Route("/app/exception", name="app_exception")
+     */
+    public function exceptionAction()
+    {
+        throw new \RuntimeException("test");
+    }
+
 }
