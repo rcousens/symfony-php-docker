@@ -33,7 +33,11 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $random = rand(0, 10000);
+        $random = rand(0, 100);
+        if ($random == 100) {
+            error_log('Command won the jackpot');
+            throw new \RuntimeException("JACKPOT BABY");
+        }
         $usernames   = ["{$random}test", "{$random}admin", "{$random}demo"];
         $emails      = ["{$random}test@test.com", "{$random}admin@admin.com", "{$random}demo@demo.com"];
         $password   = 'today123';

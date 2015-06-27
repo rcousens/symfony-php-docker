@@ -1,10 +1,12 @@
-FROM ubuntu
+FROM ubuntu:15.04
 
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get install -y \
     curl \
     git \
+    netcat \
+    rsyslog \
     php5-cli \
     php5-json \
     php5-intl \

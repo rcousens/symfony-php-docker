@@ -34,7 +34,7 @@ monolog:
             channels: ["doctrine"]
         syslog:
             type: syslog
-            level: error
+            level: notice
             facility: local0
             ident: symfonydev
         # uncomment to get logging in your browser

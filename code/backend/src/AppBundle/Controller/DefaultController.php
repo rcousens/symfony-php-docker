@@ -58,10 +58,13 @@ class DefaultController extends Controller
      */
     public function createUsersAction()
     {
-        $job = new Job('command:user:create:default');
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($job);
-        $em->flush();
+        for ($i = 0; $i < 1000; $i++) {
+            $job = new Job('command:user:create:default');
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($job);
+            $em->flush();
+        }
+
         return $this->render('default/index.html.twig');
     }
 

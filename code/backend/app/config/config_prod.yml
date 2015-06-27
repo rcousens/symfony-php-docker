@@ -27,6 +27,6 @@ monolog:
             type:  console
         syslog:
             type: syslog
+            level: notice
             facility: local0
             ident: symfonyprod
-            level: error
