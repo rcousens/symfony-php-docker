@@ -20,12 +20,13 @@ class ConsoleErrorListener
         $exception = $event->getException();
 
         $message = sprintf(
-            '%s: %s (uncaught exception) at %s line %s while running console command `%s`',
+            '[COMMAND EXCEPTION] %s: %s (uncaught exception) at %s line %s while running console command `%s`. Stack trace: %s',
             get_class($exception),
             $exception->getMessage(),
             $exception->getFile(),
             $exception->getLine(),
-            $command->getName()
+            $command->getName(),
+            $exception->getTraceAsString()
         );
 
         $this->logger->error($message, array('exception' => $exception));
@@ -46,7 +47,7 @@ class ConsoleErrorListener
         }
 
         $this->logger->warning(sprintf(
-            'Command `%s` exited with status code %d',
+            '[COMMAND EXIT CODE] Command `%s` exited with status code %d',
             $command->getName(),
             $statusCode
         ));

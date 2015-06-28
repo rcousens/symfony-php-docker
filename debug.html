@@ -1,0 +1,56 @@
+<html>
+<head>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+<style>
+
+.trace-line {
+	font-size: .8em;
+	white-space: pre-wrap;
+	padding-left: 6em;
+	text-indent: -6em;
+	display: block;
+	margin-bottom: .8em;
+}
+</style>
+</head>
+<body>
+	<textarea id="input" cols=200 rows=20>
+	app.ERROR: Doctrine\DBAL\DBALException: An exception occurred while executing 'INSERT INTO account (username, username_canonical, email, email_canonical, enabled, salt, password, last_login, locked, expired, expires_at, confirmation_token, password_requested_at, roles, credentials_expired, credentials_expire_at, id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)' with params ["31test", "31test", "31test@test.com", "31test@test.com", 1, "idmeyg3lmk0s0osk0cokswcw8gkckok", "$2y$13$idmeyg3lmk0s0osk0coksuO3DWgLA3Bul4YhLAuxf3i4m4B7YwfT2", null, 0, 0, null, null, null, "a:0:{}", 0, null, 726]:  SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint "uniq_7d3656a492fc23a8" DETAIL:  Key (username_canonical)=(31test) already exists. (uncaught exception) at /var/www/html/vendor/doctrine/dbal/lib/Doctrine/DBAL/DBALException.php line 91 while running console command `command:user:create:default`. Stack trace: #0 /var/www/html/vendor/doctrine/dbal/lib/Doctrine/DBAL/Statement.php(167): Doctrine\DBAL\DBALException::driverExceptionDuringQuery(Object(PDOException), 'INSERT INTO acc...', Array) #1 /var/www/html/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php(279): Doctrine\DBAL\Statement->execute() #2 /var/www/html/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php(966): Doctrine\ORM\Persisters\BasicEntityPersister->executeInserts() #3 /var/www/html/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php(335): Doctrine\ORM\UnitOfWork->executeInserts(Object(Doctrine\ORM\Mapping\ClassMetadata)) #4 /var/www/html/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php(340): Doctrine\ORM\UnitOfWork->commit(NULL) #5 /var/www/html/app/cache/dev/jms_diextra/doctrine/EntityManager_558e6e5c7e82b.php(305): Doctrine\ORM\EntityManager->flush(NULL) #6 /var/www/html/vendor/friendsofsymfony/user-bundle/Doctrine/UserManager.php(100): EntityManager558e6e5c7e82b_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager->flush() #7 /var/www/html/vendor/friendsofsymfony/user-bundle/Util/UserManipulator.php(56): FOS\UserBundle\Doctrine\UserManager->updateUser(Object(UserBundle\Entity\User)) #8 /var/www/html/src/CommandBundle/Command/CreateDefaultUserCommand.php(51): FOS\UserBundle\Util\UserManipulator->create('31test', 'today123', '31test@test.com', true, false) #9 /var/www/html/vendor/symfony/symfony/src/Symfony/Component/Console/Command/Command.php(259): CommandBundle\Command\CreateDefaultUserCommand->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput)) #10 /var/www/html/vendor/symfony/symfony/src/Symfony/Component/Console/Application.php(886): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput)) #11 /var/www/html/vendor/symfony/symfony/src/Symfony/Component/Console/Application.php(195): Symfony\Component\Console\Application->doRunCommand(Object(CommandBundle\Command\CreateDefaultUserCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput)) #12 /var/www/html/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Console/Application.php(96): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput)) #13 /var/www/html/vendor/jms/job-queue-bundle/JMS/JobQueueBundle/Console/Application.php(45): Symfony\Bundle\FrameworkBundle\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput)) #14 /var/www/html/vendor/symfony/symfony/src/Symfony/Component/Console/Application.php(126): JMS\JobQueueBundle\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput)) #15 /var/www/html/app/console(28): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput)) #16 {main} {"exception":"[object] (Doctrine\\DBAL\\DBALException(code: 0): An exception occurred while executing 'INSERT INTO account (username, username_canonical, email, email_canonical, enabled, salt, password, last_login, locked, expired, expires_at, confirmation_token, password_requested_at, roles, credentials_expired, credentials_expire_at, id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)' with params [\"31test\", \"31test\", \"31test@test.com\", \"31test@test.com\", 1, \"idmeyg3lmk0s0osk0cokswcw8gkckok\", \"$2y$13$idmeyg3lmk0s0osk0coksuO3DWgLA3Bul4YhLAuxf3i4m4B7YwfT2\", null, 0, 0, null, null, null, \"a:0:{}\", 0, null, 726]:\n\nSQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint \"uniq_7d3656a492fc23a8\"\nDETAIL:  Key (username_canonical)=(31test) already exists. at /var/www/html/vendor/doctrine/dbal/lib/Doctrine/DBAL/DBALException.php:91, PDOException(code: 23505): SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint \"uniq_7d3656a492fc23a8\"\nDETAIL:  Key (username_canonical)=(31test) already exists. at /var/www/html/vendor/doctrine/dbal/lib/Doctrine/DBAL/Statement.php:165)"} []
+	</textarea>
+	<br>
+	<button id="convert">Convert</button>
+	<div id="output"></div>
+<script>
+	document.getElementById("convert").onclick = function() {
+		document.getElementById("output").innerHTML = "<pre><code id=\"code\" class=\"html\"></code></pre>";
+		var input = document.getElementById("input").value;
+		input = input.replace(/\{main\}.*/, "");
+		var parts = input.split('Stack trace:');
+		var stackTrace = parts[1].split(/#\d+/);
+		var i = 0;
+		
+		stackTrace.forEach(function(part, index, array) {
+			if (!part.trim()) {
+				return;
+			}
+
+			document.getElementById("code").innerHTML += "<span class=\"trace-line\">#" + i.toString() + ": " + part + "</span>";		
+			i++;
+			
+		});
+
+		hljs.highlightBlock(document.getElementById("code"));
+				
+
+		
+
+	}
+</script>
+</body>
+</html>
+
+
+
+
+

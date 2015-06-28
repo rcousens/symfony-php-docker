@@ -25,6 +25,7 @@ RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
 
 COPY entrypoint.sh /
+COPY 50-default.conf /etc/rsyslog.d/50-default.conf
 COPY supervisord.conf /etc/supervisor/conf.d/
 
 WORKDIR /etc/supervisor/conf.d

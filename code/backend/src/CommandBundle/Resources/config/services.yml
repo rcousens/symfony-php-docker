@@ -6,3 +6,6 @@ services:
         tags:
             - { name: kernel.event_listener, event: console.exception }
             - { name: kernel.event_listener, event: console.terminate }
+
+   command.test:
+        class: CommandBundle\Service\TestService

@@ -35,11 +35,11 @@ php:
 
 worker:
   build: docker/worker
-  privileged: true
   links:
     - redis
     - postgres
     - elasticsearch
+    - logstash
   volumes_from:
     - shared
 

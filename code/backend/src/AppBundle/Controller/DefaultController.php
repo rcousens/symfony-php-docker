@@ -58,7 +58,7 @@ class DefaultController extends Controller
      */
     public function createUsersAction()
     {
-        for ($i = 0; $i < 1000; $i++) {
+        for ($i = 0; $i < 200; $i++) {
             $job = new Job('command:user:create:default');
             $em = $this->getDoctrine()->getManager();
             $em->persist($job);
@@ -96,6 +96,9 @@ class DefaultController extends Controller
      */
     public function exceptionAction()
     {
+        $user = $this->getDoctrine()->getManager()->getRepository('UserBundle:User')->findOneById(200);
+
+        $user->getEmail();
         throw new \RuntimeException("test");
     }
 

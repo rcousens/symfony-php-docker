@@ -33,11 +33,12 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $random = rand(0, 100);
-        if ($random == 100) {
-            error_log('Command won the jackpot');
-            throw new \RuntimeException("JACKPOT BABY");
+        $random = rand(0, 200);
+
+        if ($random > 150) {
+            $this->getContainer()->get('command.test')->test();
         }
+
         $usernames   = ["{$random}test", "{$random}admin", "{$random}demo"];
         $emails      = ["{$random}test@test.com", "{$random}admin@admin.com", "{$random}demo@demo.com"];
         $password   = 'today123';
@@ -49,9 +50,7 @@ EOT
         foreach ($usernames as $index => $username) {
             $manipulator->create($username, $password, $emails[$index], !$inactive, $superadmin);
             $output->writeln(sprintf('Created user <comment>%s</comment> with email %s', $username, $emails[$index]));
+            error_log(sprintf('Created user %s with email %s', $username, $emails[$index]));
         }
-
-        error_log('Created 3 users from executing command');
-
     }
 }
