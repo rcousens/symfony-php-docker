@@ -54,7 +54,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/app/users/create/{number}", name="app_users_create", defaults={"number": 100})
+     * @Route("/app/users/create/{number}", name="app_users_create", defaults={"number": 100}, requirements={"number": "\d+"})
      */
     public function createUsersAction($number)
     {
