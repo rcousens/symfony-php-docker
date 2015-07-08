@@ -1,5 +1,3 @@
-FROM ubuntu
-
-ENV DEBIAN_FRONTEND noninteractive
+FROM busybox
 
 WORKDIR /var/www/html

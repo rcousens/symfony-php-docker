@@ -60,3 +60,12 @@ kibana:
     - 5601:5601
   links:
     - elasticsearch
+
+cli:
+  build: docker/cli
+  links:
+    - redis
+    - postgres
+    - elasticsearch
+  volumes_from:
+    - shared

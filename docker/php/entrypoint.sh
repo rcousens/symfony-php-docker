@@ -23,8 +23,8 @@ sleep 10
 rm -fr /var/www/html/app/cache/*
 rm -fr /var/www/html/app/logs/*
 
-/bin/chmod 777 /var/www/html/app/cache
-/bin/chmod 777 /var/www/html/app/logs
+/bin/chown -R www-data:www-data /var/www/html/app/cache
+/bin/chown -R www-data:www-data /var/www/html/app/logs
 
 /usr/sbin/rsyslogd &
 /usr/sbin/php5-fpm --nodaemonize
