@@ -33,9 +33,9 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $random = rand(0, 500);
+        $random = rand(0, 800);
 
-        if ($random > 450) {
+        if ($random > 700) {
             $this->getContainer()->get('command.test')->test();
         }
 
