@@ -18,11 +18,11 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/app/users/index", name="app_users_index")
+     * @Route("/app/mail/spool", name="app_mail_spool")
      */
-    public function userAction()
+    public function spoolAction()
     {
-        $job = new Job('fos:elastica:populate');
+        $job = new Job('swiftmailer:spool:send');
         $em = $this->getDoctrine()->getManager();
         $em->persist($job);
         $em->flush();
@@ -30,28 +30,25 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/app/assets", name="app_assets")
+     * @Route("/app/mail/send", name="app_mail_send")
      */
-    public function assetsAction()
+    public function sendAction()
     {
-        $job = new Job('assets:install');
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($job);
-        $em->flush();
-        return $this->render('default/index.html.twig');
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Hello Email')
+            ->setFrom('send@example.com')
+            ->setTo('recipient@example.com')
+            ->setBody(
+                "<h1>This is an email</h1><p>This is some text</p><h4>Bye</h4>"
+                ,
+                'text/html'
+            );
+        $this->get('mailer')->send($message);
+
+        return new Response("Sent mail!");
     }
 
-    /**
-     * @Route("/app/assetic/{env}", name="app_assetic")
-     */
-    public function asseticAction($env)
-    {
-        $job = new Job('assetic:dump', ["--env=$env"]);
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($job);
-        $em->flush();
-        return $this->render('default/index.html.twig');
-    }
 
     /**
      * @Route("/app/users/create/{number}", name="app_users_create", defaults={"number": 100}, requirements={"number": "\d+"})
