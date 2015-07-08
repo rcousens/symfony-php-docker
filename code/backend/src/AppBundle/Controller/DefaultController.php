@@ -54,11 +54,11 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/app/users/create", name="app_users_create")
+     * @Route("/app/users/create/{number}", name="app_users_create", defaults={"number": 100})
      */
-    public function createUsersAction()
+    public function createUsersAction($number)
     {
-        for ($i = 0; $i < 200; $i++) {
+        for ($i = 0; $i < $number; $i++) {
             $job = new Job('command:user:create:default');
             $em = $this->getDoctrine()->getManager();
             $em->persist($job);
@@ -79,6 +79,7 @@ class DefaultController extends Controller
         $matchAll = new \Elastica\Query\MatchAll();
 
         $query->setQuery($matchAll);
+        $query->setSize(1000);
 
         $results = $finder->findHybrid($query);
 

@@ -49,8 +49,8 @@ EOT
 
         foreach ($usernames as $index => $username) {
             $manipulator->create($username, $password, $emails[$index], !$inactive, $superadmin);
-            $output->writeln(sprintf('Created user <comment>%s</comment> with email %s', $username, $emails[$index]));
-            error_log(sprintf('Created user %s with email %s', $username, $emails[$index]));
+            $output->writeln(sprintf('CONSOLE: Created user <comment>%s</comment> with email %s', $username, $emails[$index]));
+            error_log(sprintf('ERROR LOG: Created user %s with email %s', $username, $emails[$index]));
         }
     }
 }
