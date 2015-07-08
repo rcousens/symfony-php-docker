@@ -61,9 +61,12 @@
         "incenteev-parameters": {
             "file": "app/config/parameters.yml",
             "env-map": {
+                "database_user": "SYMFONY__DATABASE_USER",
+                "database_password": "SYMFONY__DATABASE_PASSWORD",
                 "database_host": "SYMFONY__DATABASE_HOST",
                 "redis_host": "SYMFONY__REDIS_HOST",
-                "elasticsearch_host": "SYMFONY__ELASTICSEARCH_HOST"
+                "elasticsearch_host": "SYMFONY__ELASTICSEARCH_HOST",
+                "mailer_host": "SYMFONY__MAILER_HOST"
             }
         },
         "branch-alias": {

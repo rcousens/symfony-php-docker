@@ -30,6 +30,7 @@ php:
     - postgres
     - elasticsearch
     - logstash
+    - mailhog
   volumes_from:
     - shared
 
@@ -40,6 +41,7 @@ worker:
     - postgres
     - elasticsearch
     - logstash
+    - mailhog
   volumes_from:
     - shared
 
@@ -60,6 +62,11 @@ kibana:
     - 5601:5601
   links:
     - elasticsearch
+
+mailhog:
+  build: docker/mailhog
+  ports:
+    - 8025:8025
 
 cli:
   build: docker/cli
