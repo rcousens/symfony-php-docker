@@ -39,8 +39,8 @@ EOT
             $this->getContainer()->get('command.test')->test();
         }
 
-        $usernames   = ["{$random}test", "{$random}admin", "{$random}demo"];
-        $emails      = ["{$random}test@test.com", "{$random}admin@admin.com", "{$random}demo@demo.com"];
+        $usernames   = ["{$random}test", "{$random}admin"];
+        $emails      = ["{$random}test@test.com", "{$random}admin@admin.com"];
         $password   = 'today123';
         $inactive   = $input->getOption('inactive');
         $superadmin = $input->getOption('super-admin');
