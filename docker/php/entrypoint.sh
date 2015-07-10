@@ -1,6 +1,6 @@
 #!/bin/bash
 
-/bin/sed -i "s@<LOGSTASH_HOST>@${LOGSTASH_1_PORT_514_TCP_ADDR}@" /etc/rsyslog.d/50-default.conf
+/bin/sed -i "s@<LOGSTASH_HOST>@${LOGSTASH_PORT_514_TCP_ADDR}@" /etc/rsyslog.d/50-default.conf
 
 # move these to php-fpm.conf and drop dependency on composer configuring
 export SYMFONY__DATABASE_HOST=$POSTGRES_PORT_5432_TCP_ADDR

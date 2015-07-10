@@ -1,6 +1,6 @@
 #!/bin/bash
 
-/bin/sed -i "s@<LOGSTASH_HOST>@${LOGSTASH_1_PORT_514_TCP_ADDR}@" /etc/rsyslog.d/50-default.conf
+/bin/sed -i "s@<LOGSTASH_HOST>@${LOGSTASH_PORT_514_TCP_ADDR}@" /etc/rsyslog.d/50-default.conf
 
 until nc -z postgres 5432; do
     echo "$(date) - waiting for postgres..."
