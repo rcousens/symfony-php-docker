@@ -34,7 +34,7 @@ class DefaultController extends Controller
      */
     public function sendAction()
     {
-
+        $breakIt();
         $message = \Swift_Message::newInstance()
             ->setSubject('Hello Email')
             ->setFrom('send@example.com')

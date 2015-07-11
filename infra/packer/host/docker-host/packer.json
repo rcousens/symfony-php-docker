@@ -1,0 +1,18 @@
+{
+  "builders": [
+    {
+      "type": "digitalocean",
+      "image": "ubuntu-15-04-x64",
+      "region": "sfo1",
+      "size": "512mb",
+      "snapshot_name": "ubuntu-docker-{{timestamp}}"
+    }
+  ],
+
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "setup.sh"
+    }
+  ]
+}

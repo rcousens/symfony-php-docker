@@ -1,0 +1,1 @@
+FROM rc/base-java

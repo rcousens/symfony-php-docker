@@ -1,0 +1,27 @@
+{
+  "builders": [
+    {
+      "type": "docker",
+      "image": "rc/base-java",
+      "commit": true,
+      "pull": false
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "setup.sh"
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "docker-save",
+      "path": "logstash.tar"
+    },
+    {
+      "type": "docker-tag",
+      "repository": "rc/logstash",
+      "force": true
+    }
+  ]
+}
