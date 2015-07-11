@@ -8,6 +8,13 @@ logstash:
   links:
     - elasticsearch
 
+postgres:
+  build: infra/packer/container/postgres
+  ports:
+    - 5432:5432
+  volumes:
+    - ./data/postgres:/data
+
 nginx:
   build: infra/packer/container/nginx
   ports:
@@ -45,16 +52,13 @@ worker:
   volumes_from:
     - shared
 
-postgres:
-  build: infra/packer/container/postgres
-  ports:
-    - 5432:5432
-
 elasticsearch:
   build: infra/packer/container/elasticsearch
   ports:
     - 9200:9200
     - 9300:9300
+  volumes:
+    - ./data/elasticsearch:/data
 
 kibana:
   build: infra/packer/container/kibana
