@@ -3,7 +3,7 @@
 set -e
 
 if [[ "$1" == -* ]]; then
-    set -- nginxg "$@"
+    set -- nginx "$@"
 fi
 
 if [ "$1" = 'nginx' ]; then

@@ -16,4 +16,6 @@ COPY docker-entrypoint.sh /docker-entrypoint.sh
 
 WORKDIR /var/www/html
 
+CMD ["php5-fpm"]
+
 ENTRYPOINT ["/docker-entrypoint.sh"]

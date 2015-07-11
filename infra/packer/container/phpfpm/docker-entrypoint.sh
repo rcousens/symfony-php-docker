@@ -3,6 +3,8 @@
 if [ "$1" = 'php5-fpm' ]; then
     sed -i "s@<LOGSTASH_HOST>@logstash@" /etc/rsyslog.d/logging.conf
 
+    rsyslogd
+
     cd /var/www/html
     composer install
 
@@ -21,8 +23,6 @@ if [ "$1" = 'php5-fpm' ]; then
 
     chown -R www-data:www-data /var/www/html/app/cache
     chown -R www-data:www-data /var/www/html/app/logs
-
-    rsyslogd
 
     set -- php5-fpm --nodaemonize
 fi

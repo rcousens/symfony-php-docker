@@ -8,7 +8,7 @@ cd ../nginx
 packer build packer.json
 cd ../redis
 packer build packer.json
-cd ../php-fpm
+cd ../phpfpm
 packer build packer.json
 cd ../elasticsearch
 packer build packer.json
@@ -19,6 +19,8 @@ packer build packer.json
 cd ../worker
 packer build packer.json
 cd ../kibana
+packer build packer.json
+cd ../mailhog
 packer build packer.json
 cd ../shared
 packer build packer.json
