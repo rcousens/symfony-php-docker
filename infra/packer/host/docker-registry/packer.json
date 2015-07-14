@@ -1,0 +1,23 @@
+{
+  "builders": [
+    {
+      "type": "digitalocean",
+      "image": "ubuntu-15-04-x64",
+      "region": "sfo1",
+      "size": "512mb",
+      "snapshot_name": "ubuntu-docker-registry"
+    }
+  ],
+
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "../bootstrap.sh"
+    },
+    {
+      "type": "ansible-local",
+      "playbook_file": "docker-registry.yml",
+      "playbook_dir": "../ansible"
+    }
+  ]
+}

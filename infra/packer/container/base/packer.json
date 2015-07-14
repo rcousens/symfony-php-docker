@@ -15,7 +15,7 @@
   "post-processors": [
     {
       "type": "docker-save",
-      "path": "base.tar"
+      "path": "../../build/image/base.tar"
     },
     {
       "type": "docker-tag",

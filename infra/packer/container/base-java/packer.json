@@ -16,7 +16,7 @@
   "post-processors": [
     {
       "type": "docker-save",
-      "path": "base-java.tar"
+      "path": "../../build/image/base-java.tar"
     },
     {
       "type": "docker-tag",

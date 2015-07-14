@@ -1,0 +1,15 @@
+---
+- name: install apt packages
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+  with_items:
+    - git
+    - python-pip
+
+- name: install docker-py
+  pip:
+    name: docker-py
+    version: 1.2.3
+    state: present

@@ -1,0 +1,63 @@
+---
+- name: add Docker repository key
+  apt_key:
+    id: "{{ apt_key_sig }}"
+    url: "{{ apt_key_url }}"
+    state: present
+
+- name: Add Docker repository and update apt cache
+  apt_repository:
+    repo: "{{ apt_repository }}"
+    update_cache: yes
+    state: present
+
+- name: Install (or update) Docker package
+  apt:
+    name: "{{ docker_pkg_name }}"
+    state: "{{ 'latest' if update_docker_package else 'present' }}"
+    update_cache: yes
+    cache_valid_time: 600
+
+- name: Container Storage Directory
+  file:
+    path: /etc/systemd/system/docker.service.d
+    state: directory
+    mode: 0755
+    owner: root
+    group: root
+
+- name: Copy docker systemd unit file
+  copy:
+    src: docker.conf
+    dest: /etc/systemd/system/docker.service.d/docker.conf
+    mode: 0644
+    owner: root
+    group: root
+  notify:
+    - Reload docker
+
+- name: Set docker daemon options
+  copy:
+    content: "DOCKER_OPTS=\"{{ docker_opts.rstrip('\n') }}\""
+    dest: /etc/default/docker
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Reload docker
+  when: docker_opts != ""
+
+- name: Start docker-lxc
+  service:
+    name: docker
+    enabled: yes
+    state: started
+  when: docker_pkg_name.find('lxc-docker') != -1
+
+- name: Add users to the docker group
+  user:
+    name:   "{{ item }}"
+    groups: docker
+    append: yes
+  with_items: docker_group_members
+  when: docker_group_members is defined

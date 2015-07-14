@@ -5,14 +5,19 @@
       "image": "ubuntu-15-04-x64",
       "region": "sfo1",
       "size": "512mb",
-      "snapshot_name": "ubuntu-docker-{{timestamp}}"
+      "snapshot_name": "ubuntu-docker-host"
     }
   ],
 
   "provisioners": [
     {
       "type": "shell",
-      "script": "setup.sh"
+      "script": "../bootstrap.sh"
+    },
+    {
+      "type": "ansible-local",
+      "playbook_file": "docker-host.yml",
+      "playbook_dir": "../ansible"
     }
   ]
 }

@@ -22,5 +22,3 @@ cd ../kibana
 packer build packer.json
 cd ../mailhog
 packer build packer.json
-cd ../shared
-packer build packer.json

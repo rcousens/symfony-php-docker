@@ -1,0 +1,74 @@
+code:
+  build: code
+  volumes:
+    - /var/www/html
+
+logstash:
+  build: logstash
+  links:
+    - elasticsearch
+
+postgres:
+  build: postgres
+  ports:
+    - 5432:5432
+  volumes:
+    - ./data/postgres:/data
+
+nginx:
+  build: nginx
+  ports:
+    - 8080:80
+  links:
+    - phpfpm
+    - logstash
+  volumes_from:
+    - code
+
+redis:
+  build: redis
+  links:
+    - logstash
+
+phpfpm:
+  build: phpfpm
+  links:
+    - redis
+    - postgres
+    - elasticsearch
+    - logstash
+    - mailhog
+  volumes_from:
+    - code
+
+worker:
+  build: worker
+  links:
+    - redis
+    - postgres
+    - elasticsearch
+    - logstash
+    - mailhog
+  volumes_from:
+    - code
+
+elasticsearch:
+  build: elasticsearch
+  ports:
+    - 9200:9200
+    - 9300:9300
+  volumes:
+    - ./data/elasticsearch:/data
+
+kibana:
+  build: kibana
+  ports:
+    - 5601:5601
+  links:
+    - elasticsearch
+
+mailhog:
+  build: mailhog
+  ports:
+    - 8025:8025
+
