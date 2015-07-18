@@ -1,22 +1,22 @@
 shared:
-  build: infra/packer/container/shared
+  build: docker/shared
   volumes:
     - ./code/backend:/var/www/html
 
 logstash:
-  build: infra/packer/container/logstash
+  build: docker/logstash
   links:
     - elasticsearch
 
 postgres:
-  build: infra/packer/container/postgres
+  build: docker/postgres
   ports:
     - 5432:5432
   volumes:
     - ./data/postgres:/data
 
 nginx:
-  build: infra/packer/container/nginx
+  build: docker/nginx
   ports:
     - 8080:80
   links:
@@ -26,12 +26,12 @@ nginx:
     - shared
 
 redis:
-  build: infra/packer/container/redis
+  build: docker/redis
   links:
     - logstash
 
 phpfpm:
-  build: infra/packer/container/phpfpm
+  build: docker/phpfpm
   links:
     - redis
     - postgres
@@ -42,7 +42,7 @@ phpfpm:
     - shared
 
 worker:
-  build: infra/packer/container/worker
+  build: docker/worker
   links:
     - redis
     - postgres
@@ -53,7 +53,7 @@ worker:
     - shared
 
 elasticsearch:
-  build: infra/packer/container/elasticsearch
+  build: docker/elasticsearch
   ports:
     - 9200:9200
     - 9300:9300
@@ -61,14 +61,14 @@ elasticsearch:
     - ./data/elasticsearch:/data
 
 kibana:
-  build: infra/packer/container/kibana
+  build: docker/kibana
   ports:
     - 5601:5601
   links:
     - elasticsearch
 
 mailhog:
-  build: infra/packer/container/mailhog
+  build: docker/mailhog
   ports:
     - 8025:8025
 
